@@ -4,7 +4,14 @@
   "description": "Chrome extension for Short",
   "manifest_version": 2,
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  }
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "permissions": [
+    "<all_urls>",
+    "webRequest",
+    "webRequestBlocking"
+  ]
 }
