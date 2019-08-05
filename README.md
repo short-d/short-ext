@@ -1,6 +1,29 @@
 # Short Ext
 Chrome extension for [Short](https://github.com/byliuyang/short)
 
+## Preview
+![](doc/usage.gif)
+
+## Prerequisites
+- yarn v1.17.3
+- node v12.3.1
+
+## Getting Started
+### Build
+```bash
+./bin/build.sh
+```
+
+### Install
+1. Navigate to `chrome://extensions/` in Google Chrome.
+2. Turn on `developer mode`.
+![](doc/screenshot/developer-mode.png)
+3. Click on `Load unpacked`.
+![](doc/screenshot/load-unpacked.png)
+4. Select `build` directory.
+5. **Short** should now up in extension list.
+![](doc/screenshot/extension.png)
+
 ## Author
 Harry Liu - [byliuyang](https://github.com/byliuyang)
 
