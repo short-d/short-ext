@@ -1,0 +1,8 @@
+# JetBrains editors
+.idea
+
+# Node dependencies
+node_modules
+
+# Build
+build
