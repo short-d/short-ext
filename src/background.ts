@@ -24,7 +24,8 @@ function extractAlias(shortLink: string): string {
 }
 
 class ShortExt {
-    constructor(private apiBaseUrl: string) {}
+    constructor(private apiBaseUrl: string, private webUi: string) {
+    }
 
     redirect = (details: Details): BlockingResponse => {
         let shortLink = details.url;
@@ -34,9 +35,13 @@ class ShortExt {
         }
 
         let alias = extractAlias(shortLink);
-
+        if (alias) {
+            return {
+                redirectUrl: `${this.apiBaseUrl}${alias}`
+            };
+        }
         return {
-            redirectUrl: `${this.apiBaseUrl}${alias}`
+            redirectUrl: `${this.webUi}`
         };
     };
 
@@ -63,5 +68,8 @@ class ShortExt {
     }
 }
 
-const ext = new ShortExt('http://localhost/r/');
+const webUi = 'https://s.time4hacks.com';
+const apiBaseUrl = `${webUi}/r/`;
+
+const ext = new ShortExt(apiBaseUrl, webUi);
 ext.launch();
