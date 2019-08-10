@@ -1,5 +1,5 @@
 # Short Ext
-Chrome extension for [Short](https://github.com/byliuyang/short)
+![](promo/marquee.png)
 
 ## Preview
 ![](doc/usage.gif)
