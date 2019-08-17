@@ -1,6 +1,8 @@
 # Short Ext
 ![](promo/marquee.png)
 
+Get it from [Chrome Web Store](https://chrome.google.com/webstore/detail/short/hoobjcdfefnngjeepgjkiojpcicciihc)
+
 ## Preview
 ![](doc/usage.gif)
 
