@@ -71,5 +71,14 @@ class ShortExt {
 const webUi = 'https://s.time4hacks.com';
 const apiBaseUrl = `${webUi}/r/`;
 
+// This event is fired with the user accepts the input in the omnibox.
+chrome.omnibox.onInputEntered.addListener(
+function(text) {
+    // Encode user input for special characters , / ? : @ & = + $ #
+    var newURL = 'https://s.time4hacks.com/r/' + encodeURIComponent(text);
+    chrome.tabs.create({ url: newURL });
+});
+
+
 const ext = new ShortExt(apiBaseUrl, webUi);
 ext.launch();
