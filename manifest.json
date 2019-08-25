@@ -1,7 +1,7 @@
 {
   "name": "Short",
   "short_name": "Short Ext",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Short allows you to visit short links using prefix s/ instead of https://s.time4hacks.com/r/",
   "manifest_version": 2,
   "background": {
@@ -15,6 +15,9 @@
     "webRequest",
     "webRequestBlocking"
   ],
+  "omnibox": {
+    "keyword" : "short"
+  },
   "icons": {
     "16": "icons/logo-16.png",
     "48": "icons/logo-48.png",

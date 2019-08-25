@@ -23,8 +23,33 @@ function extractAlias(shortLink: string): string {
     return shortLink.substring(aliasStartIdx);
 }
 
+function openTab(url: string) {
+    chrome
+        .tabs
+        .create({
+            url: url
+        });
+}
+
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
+        this.setupOmnibox();
+    }
+
+    fullURL = (alias: string) => {
+        // Escape user input for special characters , / ? : @ & = + $ #
+        let escapedAlias = encodeURIComponent(alias);
+        return `${this.apiBaseUrl}${escapedAlias}`;
+    }
+
+    setupOmnibox = () => {
+        chrome
+            .omnibox
+            .onInputEntered
+            .addListener((alias: string)  =>  {
+                let url = this.fullURL(alias);
+                openTab(url);
+            });
     }
 
     redirect = (details: Details): BlockingResponse => {
@@ -72,4 +97,5 @@ const webUi = 'https://s.time4hacks.com';
 const apiBaseUrl = `${webUi}/r/`;
 
 const ext = new ShortExt(apiBaseUrl, webUi);
+
 ext.launch();
