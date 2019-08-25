@@ -23,8 +23,34 @@ function extractAlias(shortLink: string): string {
     return shortLink.substring(aliasStartIdx);
 }
 
+function openTab(url: string) {
+    chrome
+        .tabs
+        .create({
+            url: url
+        });
+}
+
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
+        this.fullURL = this.fullURL.bind(this);
+        this.setupOmnibox = this.setupOmnibox.bind(this);
+    }
+
+    fullURL(alias: string) {
+        // Escape user input for special characters , / ? : @ & = + $ #
+        let escapedAlias = encodeURIComponent(alias);
+        return `${this.apiBaseUrl}${escapedAlias}`;
+    }
+
+    setupOmnibox(alias: string) {
+        let url = this.fullURL(alias);
+        chrome
+            .omnibox
+            .onInputEntered
+            .addListener(()  =>  {
+                openTab(url);
+            });
     }
 
     redirect = (details: Details): BlockingResponse => {
@@ -71,14 +97,12 @@ class ShortExt {
 const webUi = 'https://s.time4hacks.com';
 const apiBaseUrl = `${webUi}/r/`;
 
-// This event is fired with the user accepts the input in the omnibox.
-chrome.omnibox.onInputEntered.addListener(
-function(text) {
-    // Encode user input for special characters , / ? : @ & = + $ #
-    var newURL = 'https://s.time4hacks.com/r/' + encodeURIComponent(text);
-    chrome.tabs.create({ url: newURL });
-});
-
-
 const ext = new ShortExt(apiBaseUrl, webUi);
+
+// This event is triggered when the user accepts the input in the omnibox.
+chrome
+    .omnibox
+    .onInputEntered
+    .addListener(ext.setupOmnibox);
+
 ext.launch();
