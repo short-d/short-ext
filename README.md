@@ -1,7 +1,7 @@
 # Short Ext
 ![](promo/marquee.png)
 
-Get it from [Chrome Web Store](https://chrome.google.com/webstore/detail/short/hoobjcdfefnngjeepgjkiojpcicciihc)
+Install from [Chrome Web Store](https://s.time4hacks.com/r/ext)
 
 ## Preview
 ![](doc/usage.gif)
