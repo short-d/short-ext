@@ -33,22 +33,21 @@ function openTab(url: string) {
 
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
-        this.fullURL = this.fullURL.bind(this);
-        this.setupOmnibox = this.setupOmnibox.bind(this);
+        this.setupOmnibox();
     }
 
-    fullURL(alias: string) {
+    fullURL = (alias: string) => {
         // Escape user input for special characters , / ? : @ & = + $ #
         let escapedAlias = encodeURIComponent(alias);
         return `${this.apiBaseUrl}${escapedAlias}`;
     }
 
-    setupOmnibox(alias: string) {
-        let url = this.fullURL(alias);
+    setupOmnibox = () => {
         chrome
             .omnibox
             .onInputEntered
-            .addListener(()  =>  {
+            .addListener((alias: string)  =>  {
+                let url = this.fullURL(alias);
                 openTab(url);
             });
     }
@@ -98,11 +97,5 @@ const webUi = 'https://s.time4hacks.com';
 const apiBaseUrl = `${webUi}/r/`;
 
 const ext = new ShortExt(apiBaseUrl, webUi);
-
-// This event is triggered when the user accepts the input in the omnibox.
-chrome
-    .omnibox
-    .onInputEntered
-    .addListener(ext.setupOmnibox);
 
 ext.launch();
