@@ -12,8 +12,9 @@ Get it from [Chrome Web Store](https://chrome.google.com/webstore/detail/short/h
 
 ## Getting Started
 ### Build
-```bash
-./bin/build.sh
+```
+npm install
+npm run extension
 ```
 
 ### Install
