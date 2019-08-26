@@ -13,8 +13,8 @@ Get it from [Chrome Web Store](https://chrome.google.com/webstore/detail/short/h
 ## Getting Started
 ### Build
 ```
-npm install
-npm run extension
+yarn
+yarn run build
 ```
 
 ### Install
