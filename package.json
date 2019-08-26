@@ -7,8 +7,9 @@
     "url": "https://github.com/byliuyang/short-ext.git"
   },
   "scripts": {
-    "extension": "tsc && cp -r icons extension/",
-    "extension:zip": "zip -r short.zip extension/* -x \"*.DS_Store\""
+    "dev": "yarn run cp && tsc --watch",
+    "build": "yarn run cp && tsc",
+    "cp": "cp -r icons extension/ && cp manifest.json extension/"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.87",
