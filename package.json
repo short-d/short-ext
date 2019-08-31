@@ -12,8 +12,16 @@
     "dev": "yarn build --watch",
     "cp:assets": "cp -r icons manifest.json build/"
   },
+  {
+    "husky": {
+      "hooks": {
+        "pre-commit": "pretty-quick --staged",
+      },
+    },
+  },
   "devDependencies": {
     "@types/chrome": "^0.0.87",
+    "prettier": "1.18.2",
     "typescript": "^3.5.3"
   }
 }
