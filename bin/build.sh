@@ -9,4 +9,4 @@ cp manifest.json build/short-ext/
 cp -r icons build/short-ext/
 
 cd build
-zip -r short-ext.zip short-ext/* -x "*.DS_Store"
+yarn build

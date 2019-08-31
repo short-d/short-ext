@@ -7,9 +7,10 @@
     "url": "https://github.com/byliuyang/short-ext.git"
   },
   "scripts": {
-    "dev": "yarn run cp && tsc --watch",
-    "build": "yarn run cp && tsc",
-    "cp": "cp -r icons extension/ && cp manifest.json extension/"
+    "build": "yarn prep && yarn cp:assets && tsc",
+    "prep": "rm -rf build && mkdir build",
+    "dev": "yarn build --watch",
+    "cp:assets": "cp -r icons manifest.json build/"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.87",
