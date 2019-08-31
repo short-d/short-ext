@@ -1,4 +1,17 @@
 {
+  "name": "Short",
+  "version": "0.0.4",
+  "description": "Visit short links with less typing",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/byliuyang/short-ext.git"
+  },
+  "scripts": {
+    "build": "yarn prep && yarn cp:assets && tsc",
+    "prep": "rm -rf build && mkdir build",
+    "dev": "yarn build --watch",
+    "cp:assets": "cp -r icons manifest.json build/"
+  },
   "devDependencies": {
     "@types/chrome": "^0.0.87",
     "typescript": "^3.5.3"

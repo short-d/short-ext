@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
-rm -rf build
+yarn build
+
 mkdir -p build/short-ext
-yarn
-tsc
+
 mv build/background.js build/short-ext/
 cp manifest.json build/short-ext/
 cp -r icons build/short-ext/
 
-cd build
-zip -r short-ext.zip short-ext/* -x "*.DS_Store"
+zip -r build/short-ext.zip build/short-ext/* -x "*.DS_Store"

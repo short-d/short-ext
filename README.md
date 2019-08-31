@@ -12,8 +12,9 @@ Install from [Chrome Web Store](https://s.time4hacks.com/r/ext)
 
 ## Getting Started
 ### Build
-```bash
-./bin/build.sh
+```
+yarn
+yarn run build
 ```
 
 ### Install
