@@ -34,6 +34,8 @@ function openTab(url: string) {
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
         this.setupOmnibox();
+        // Call the Event Listener Function bind onclick
+        this.redirectToBaseURI(webUi);
     }
 
     fullURL = (alias: string) => {
@@ -90,6 +92,22 @@ class ShortExt {
 
     launch() {
         this.interceptRequests();
+    }
+
+    // Function to handle extension clicks
+    // Required: browser_action clause in manifest.json to tell the browser that we will need it's events.
+    redirectToBaseURI = (base_uri: String) => {
+        // Event Listener
+        chrome.browserAction.onClicked.addListener(function(tab) 
+            { 
+                // Check if the current tab has some url/event should not be triggered on empty tabs
+                if(tab.hasOwnProperty("url")){
+                    url = tab.url;
+                    chrome
+                    .tabs
+                    .create({ url: `${base_uri}/?long_link=${url}` }, () => {});
+                }
+            });
     }
 }
 
