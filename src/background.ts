@@ -34,6 +34,7 @@ function openTab(url: string) {
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
         this.setupOmnibox();
+        this.iconClickHandler(webUi);
     }
 
     fullURL = (alias: string) => {
@@ -50,6 +51,14 @@ class ShortExt {
                 let url = this.fullURL(alias);
                 openTab(url);
             });
+    }
+
+    iconClickHandler = (webUi: string) => {
+        chrome.browserAction.onClicked.addListener(tab => {
+            if(tab.hasOwnProperty("url")) {
+                chrome.tabs.create({ url: `${webUi}/?long_link=${tab.url}` }, () => {});
+            }
+        });
     }
 
     redirect = (details: Details): BlockingResponse => {
