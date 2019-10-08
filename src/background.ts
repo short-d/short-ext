@@ -96,7 +96,10 @@ class ShortExt {
 
     redirectToBaseURI = (base_uri: String) => {
         // Event Listener
-        chrome.browserAction.onClicked.addListener(function(tab) 
+        chrome
+          .browserAction
+          .onClicked
+          .addListener(tab => 
             { 
                 // Check if the current tab has some url/event should not be triggered on empty tabs
                 if(tab.hasOwnProperty("url")){
