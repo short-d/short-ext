@@ -95,7 +95,7 @@ class ShortExt {
     }
 
     redirectToBaseURI = (base_uri: String) => {
-        // Event Listener
+      //  browser_action need to be configured in manifest.json
         chrome
           .browserAction
           .onClicked
