@@ -94,7 +94,6 @@ class ShortExt {
         this.interceptRequests();
     }
 
-    // Function to handle extension clicks
     // Required: browser_action clause in manifest.json to tell the browser that we will need it's events.
     redirectToBaseURI = (base_uri: String) => {
         // Event Listener
