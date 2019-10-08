@@ -34,7 +34,7 @@ function openTab(url: string) {
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
         this.setupOmnibox();
-        // Call the Event Listener Function bind onclick
+        // Execute when extension icon is clicked
         this.redirectToBaseURI(webUi);
     }
 
