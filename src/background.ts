@@ -102,13 +102,20 @@ class ShortExt {
           .addListener(tab => 
             { 
                 // Check if the current tab has some url/event should not be triggered on empty tabs
-                if(tab.hasOwnProperty("url")){
-                    url = tab.url;
+                if(this.isEmptyTab(tab)) {
+                    return;
+                  }
+                  
+                url = tab.url;
                     chrome
                     .tabs
                     .create({ url: `${base_uri}/?long_link=${url}` }, () => {});
-                }
             });
+            
+    }
+
+    isEmptyTab(tab) {
+        return !tab.hasOwnProperty("url");
     }
 }
 
