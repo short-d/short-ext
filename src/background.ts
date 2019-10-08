@@ -35,7 +35,7 @@ class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
         this.setupOmnibox();
         // Execute when extension icon is clicked
-        this.redirectToBaseURI(webUi);
+        this.redirectToHomePage(webUi);
     }
 
     fullURL = (alias: string) => {
@@ -94,7 +94,7 @@ class ShortExt {
         this.interceptRequests();
     }
 
-    redirectToBaseURI = (base_uri: String) => {
+    redirectToHomePage = (homepageURL: String) => {
       //  browser_action need to be configured in manifest.json
         chrome
           .browserAction
@@ -106,10 +106,10 @@ class ShortExt {
                     return;
                   }
                   
-                url = tab.url;
+                  currentPageURL = tab.url;
                     chrome
                     .tabs
-                    .create({ url: `${base_uri}/?long_link=${url}` }, () => {});
+                    .create({ url: `${homepageURL}/?long_link=${currentPageURL}` }, () => {});
             });
             
     }
