@@ -109,7 +109,7 @@ class ShortExt {
                   currentPageURL = tab.url;
                     chrome
                     .tabs
-                    .create({ url: `${homepageURL}/?long_link=${currentPageURL}` }, () => {});
+                    .create({ url: `${homepageURL}/?long_link=${currentPageURL}` });
             });
             
     }
