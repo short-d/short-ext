@@ -34,7 +34,7 @@ function openTab(url: string) {
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
         this.setupOmnibox();
-        this.iconClickHandler(webUi);
+        this.onIconClick(webUi);
     }
 
     fullURL = (alias: string) => {
@@ -53,10 +53,14 @@ class ShortExt {
             });
     }
 
-    iconClickHandler = (webUi: string) => {
+    isEmptyTab(tab: chrome.tabs.Tab) {
+        return !tab.hasOwnProperty("url");
+    }
+
+    onIconClick = (webUi: string) => {
         chrome.browserAction.onClicked.addListener(tab => {
-            if(tab.hasOwnProperty("url")) {
-                chrome.tabs.create({ url: `${webUi}/?long_link=${tab.url}` }, () => {});
+            if(this.isEmptyTab(tab)) {
+                chrome.tabs.create({ url: `${webUi}/?long_link=${tab.url}` });
             }
         });
     }
