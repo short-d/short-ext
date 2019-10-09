@@ -60,7 +60,12 @@ class ShortExt {
     onIconClick = (webUi: string) => {
         chrome.browserAction.onClicked.addListener(tab => {
             if(this.isEmptyTab(tab)) {
-                chrome.tabs.create({ url: `${webUi}/?long_link=${tab.url}` });
+               return;
+            }
+            if(tab.url!.includes("https://s.time4hacks.com")) {
+                return;
+            }
+            chrome.tabs.create({url: `${webUi}/?long_link=${tab.url}`});
         });
     }
 
