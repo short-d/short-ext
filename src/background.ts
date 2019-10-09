@@ -61,7 +61,6 @@ class ShortExt {
         chrome.browserAction.onClicked.addListener(tab => {
             if(this.isEmptyTab(tab)) {
                 chrome.tabs.create({ url: `${webUi}/?long_link=${tab.url}` });
-            }
         });
     }
 
