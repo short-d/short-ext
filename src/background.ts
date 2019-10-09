@@ -34,6 +34,8 @@ function openTab(url: string) {
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
         this.setupOmnibox();
+        // Execute when extension icon is clicked
+        this.redirectToHomePage(webUi);
     }
 
     fullURL = (alias: string) => {
@@ -90,6 +92,29 @@ class ShortExt {
 
     launch() {
         this.interceptRequests();
+    }
+
+    redirectToHomePage = (homepageURL: String) => {
+      //  browser_action need to be configured in manifest.json
+        chrome
+          .browserAction
+          .onClicked
+          .addListener(tab => 
+            { 
+                if(this.isEmptyTab(tab)) {
+                    return;
+                  }
+                  
+                  currentPageURL = tab.url;
+                    chrome
+                    .tabs
+                    .create({ url: `${homepageURL}/?long_link=${currentPageURL}` });
+            });
+            
+    }
+
+    isEmptyTab(tab) {
+        return !tab.hasOwnProperty("url");
     }
 }
 

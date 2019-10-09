@@ -22,5 +22,12 @@
     "16": "icons/logo-16.png",
     "48": "icons/logo-48.png",
     "128": "icons/logo-128.png"
+  },
+  "browser_action": {
+    "default_icon": {
+        "16": "icons/logo-16.png",
+        "48": "icons/logo-48.png",
+        "128": "icons/logo-128.png"
+      }
   }
 }
