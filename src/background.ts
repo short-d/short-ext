@@ -101,7 +101,6 @@ class ShortExt {
           .onClicked
           .addListener(tab => 
             { 
-                // Check if the current tab has some url/event should not be triggered on empty tabs
                 if(this.isEmptyTab(tab)) {
                     return;
                   }
