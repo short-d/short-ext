@@ -42,7 +42,7 @@ class ShortExt {
         // Escape user input for special characters , / ? : @ & = + $ #
         let escapedAlias = encodeURIComponent(alias);
         return `${this.apiBaseUrl}${escapedAlias}`;
-    }
+    };
 
     setupOmnibox = () => {
         chrome
@@ -52,7 +52,7 @@ class ShortExt {
                 let url = this.fullURL(alias);
                 openTab(url);
             });
-    }
+    };
 
     redirect = (details: Details): BlockingResponse => {
         let shortLink = details.url;
@@ -105,16 +105,16 @@ class ShortExt {
                     return;
                   }
                   
-                  currentPageURL = tab.url;
+                  let currentPageURL = tab.url;
                     chrome
                     .tabs
                     .create({ url: `${homepageURL}/?long_link=${currentPageURL}` });
             });
             
-    }
+    };
 
-    isEmptyTab(tab) {
-        return !tab.hasOwnProperty("url");
+    isEmptyTab(tab: chrome.tabs.Tab) {
+        return tab.url == null;
     }
 }
 
