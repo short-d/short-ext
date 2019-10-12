@@ -35,7 +35,7 @@ class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
         this.setupOmnibox();
         // Execute when extension icon is clicked
-        this.redirectToHomePage(webUi);
+        this.redirectToHomePage();
     }
 
     fullURL = (alias: string) => {
@@ -94,36 +94,47 @@ class ShortExt {
         this.interceptRequests();
     }
 
-    redirectToHomePage = (homepageURL: string) => {
+    redirectToHomePage = () => {
         //  browser_action need to be configured in manifest.json
         chrome
             .browserAction
             .onClicked
             .addListener((tab: chrome.tabs.Tab) => {
+                if (this.isOnHomepage(tab)) {
+                    return
+                }
+
                 if (this.isEmptyTab(tab)) {
-                    this.goToHomepage(tab, homepageURL);
+                    this.goToHomepage(tab);
                     return;
                 }
 
-                this.createShortLink(tab, homepageURL);
+                this.createShortLink(tab);
             });
 
     };
 
-    goToHomepage(currentTab: chrome.tabs.Tab, homepageURL: string) {
+    isOnHomepage(currentTab: chrome.tabs.Tab): boolean {
+        if (!currentTab.url) {
+            return false;
+        }
+        return currentTab.url.startsWith(this.webUi);
+    }
+
+    goToHomepage(currentTab: chrome.tabs.Tab) {
         chrome.tabs.update(currentTab.id!, {
-            url: homepageURL
+            url: this.webUi
         });
     }
 
-    createShortLink(currentTab: chrome.tabs.Tab, homepageURL: string) {
+    createShortLink(currentTab: chrome.tabs.Tab) {
         let currentPageURL = currentTab.url;
         chrome
             .tabs
-            .create({url: `${homepageURL}/?long_link=${currentPageURL}`});
+            .create({url: `${this.webUi}/?long_link=${currentPageURL}`});
     }
 
-    isEmptyTab(tab: chrome.tabs.Tab) {
+    isEmptyTab(tab: chrome.tabs.Tab): boolean {
         return tab.url == null;
     }
 }
