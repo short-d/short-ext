@@ -119,7 +119,7 @@ class ShortExt {
 }
 
 const webUi = 'https://s.time4hacks.com';
-const apiBaseUrl = `${webUi}/r/`;
+const apiBaseUrl = `https://http-api-s.time4hacks.com/r/`;
 
 const ext = new ShortExt(apiBaseUrl, webUi);
 
