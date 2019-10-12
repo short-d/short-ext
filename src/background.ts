@@ -48,7 +48,7 @@ class ShortExt {
         chrome
             .omnibox
             .onInputEntered
-            .addListener((alias: string)  =>  {
+            .addListener((alias: string) => {
                 let url = this.fullURL(alias);
                 openTab(url);
             });
@@ -94,24 +94,34 @@ class ShortExt {
         this.interceptRequests();
     }
 
-    redirectToHomePage = (homepageURL: String) => {
-      //  browser_action need to be configured in manifest.json
+    redirectToHomePage = (homepageURL: string) => {
+        //  browser_action need to be configured in manifest.json
         chrome
-          .browserAction
-          .onClicked
-          .addListener(tab => 
-            { 
-                if(this.isEmptyTab(tab)) {
+            .browserAction
+            .onClicked
+            .addListener((tab: chrome.tabs.Tab) => {
+                if (this.isEmptyTab(tab)) {
+                    this.goToHomepage(tab, homepageURL);
                     return;
-                  }
-                  
-                  let currentPageURL = tab.url;
-                    chrome
-                    .tabs
-                    .create({ url: `${homepageURL}/?long_link=${currentPageURL}` });
+                }
+
+                this.createShortLink(tab, homepageURL);
             });
-            
+
     };
+
+    goToHomepage(currentTab: chrome.tabs.Tab, homepageURL: string) {
+        chrome.tabs.update(currentTab.id!, {
+            url: homepageURL
+        });
+    }
+
+    createShortLink(currentTab: chrome.tabs.Tab, homepageURL: string) {
+        let currentPageURL = currentTab.url;
+        chrome
+            .tabs
+            .create({url: `${homepageURL}/?long_link=${currentPageURL}`});
+    }
 
     isEmptyTab(tab: chrome.tabs.Tab) {
         return tab.url == null;
