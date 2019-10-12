@@ -1,7 +1,7 @@
 {
   "name": "Short",
   "short_name": "Short",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Visit short links with less typing",
   "manifest_version": 2,
   "background": {
