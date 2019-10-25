@@ -1,7 +1,7 @@
 # Short Ext
 ![](promo/marquee.png)
 
-Install from [Chrome Web Store](https://s.time4hacks.com/r/ext)
+Install from [Chrome Web Store](https://short-d.com/r/ext)
 
 ## Preview
 ![](doc/usage.gif)
@@ -28,7 +28,7 @@ yarn run build
 ![](doc/screenshot/extension.png)
 
 ## Contributing
-When contributing to this repository, please first discuss the change you wish to make via [issues](https://github.com/byliuyang/short-ext/issues) with the owner of this repository before making a change.
+When contributing to this repository, please first discuss the change you wish to make via [issues](https://short-d.com/r/extissue) with the owner of this repository before making a change.
 
 ### Pull Request Process
 1. Update the README.md with details of changes to the interface, this includes new environment 
