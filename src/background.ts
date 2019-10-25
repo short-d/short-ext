@@ -140,7 +140,7 @@ class ShortExt {
 }
 
 const webUi = 'https://short-d.com';
-const apiBaseUrl = `https://api.short-d.com/r/`;
+const apiBaseUrl = 'https://api.short-d.com/r/';
 
 const ext = new ShortExt(apiBaseUrl, webUi);
 
