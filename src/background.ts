@@ -31,6 +31,16 @@ function openTab(url: string) {
         });
 }
 
+chrome.runtime.onMessageExternal.addListener(
+    function(request, sender, sendResponse) {
+        if (request) {
+            if (request.message == "ping") {
+                sendResponse({ping: true});
+            }
+        }
+    }
+);
+
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
         this.setupOmnibox();
