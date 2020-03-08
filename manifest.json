@@ -25,9 +25,14 @@
   },
   "browser_action": {
     "default_icon": {
-        "16": "icons/logo-16.png",
-        "48": "icons/logo-48.png",
-        "128": "icons/logo-128.png"
-      }
+      "16": "icons/logo-16.png",
+      "48": "icons/logo-48.png",
+      "128": "icons/logo-128.png"
+    }
+  },
+  "externally_connectable": {
+    "matches": [
+      "${APP_BASE_URL}/*"
+    ]
   }
 }

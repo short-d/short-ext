@@ -7,13 +7,14 @@
     "url": "https://short-d.com/r/extcode"
   },
   "scripts": {
-    "build": "yarn prep && yarn cp:assets && tsc",
+    "build": "yarn prep && yarn cp:assets && envsub --env-file .env build/manifest.json && tsc",
     "prep": "rm -rf build && mkdir build",
     "dev": "yarn build --watch",
     "cp:assets": "cp -r icons manifest.json build/"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.87",
+    "envsub": "^4.0.7",
     "typescript": "^3.5.3"
   }
 }
