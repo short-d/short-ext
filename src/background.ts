@@ -6,6 +6,10 @@ interface Details {
     url: string
 }
 
+enum MessageType {
+    PING = "PING"
+}
+
 function isFromAddressBar(url: string): boolean {
     return [
         'google.com/search?q=',
@@ -31,21 +35,13 @@ function openTab(url: string) {
         });
 }
 
-chrome.runtime.onMessageExternal.addListener(
-    function(request, sender, sendResponse) {
-        if (request) {
-            if (request.message == "ping") {
-                sendResponse({ping: true});
-            }
-        }
-    }
-);
 
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
         this.setupOmnibox();
         // Execute when extension icon is clicked
         this.redirectToHomePage();
+        this.listenToMessages();
     }
 
     fullURL = (alias: string) => {
@@ -146,6 +142,20 @@ class ShortExt {
 
     isEmptyTab(tab: chrome.tabs.Tab): boolean {
         return tab.url == null;
+    }
+
+    listenToMessages() {
+        chrome
+            .runtime
+            .onMessageExternal
+            .addListener((request, sender, sendResponse) => {
+                if (request) {
+                    if (request.message == MessageType.PING) {
+                        sendResponse({ping: true});
+                    }
+                }
+            }
+        );
     }
 }
 

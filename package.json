@@ -10,7 +10,8 @@
     "build": "yarn prep && yarn cp:assets && tsc",
     "prep": "rm -rf build && mkdir build",
     "dev": "yarn build --watch",
-    "cp:assets": "cp -r icons manifest.json build/"
+    "cp:assets": "cp -r icons manifest.json build/ && yarn substenv:manifest",
+    "substenv:manifest": "sh -ac '. .env; perl -p -e '\"'\"'s/\\$\\{([^}]+)\\}/defined $ENV{$1} ? $ENV{$1} : $&/eg; s/\\$\\{([^}]+)\\}//eg'\"'\"' build/manifest.json' > build/tempManifest.json; mv build/tempManifest.json build/manifest.json"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.87",
