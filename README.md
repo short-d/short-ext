@@ -11,6 +11,12 @@ Install from [Chrome Web Store](https://short-d.com/r/ext)
 - node v12.3.1
 
 ## Getting Started
+### Setup
+```bash
+cp .env.dist .env
+```
+Replace `APP_BASE_URL` value with URL of the client (web application).
+
 ### Build
 ```
 yarn
