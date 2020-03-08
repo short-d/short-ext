@@ -15,7 +15,7 @@ Install from [Chrome Web Store](https://short-d.com/r/ext)
 ```bash
 cp .env.dist .env
 ```
-Replace `APP_BASE_URL` value with the URL of the web frontend.
+Replace `APP_BASE_URL` with the URL of the web frontend.
 
 ### Build
 ```
