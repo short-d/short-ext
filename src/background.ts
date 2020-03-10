@@ -3,11 +3,11 @@ import ResourceType = webRequest.ResourceType;
 import BlockingResponse = webRequest.BlockingResponse;
 
 interface Details {
-    url: string
+    url: string;
 }
 
 enum MessageType {
-    PING = "PING"
+    PING = 'PING'
 }
 
 function isFromAddressBar(url: string): boolean {
@@ -28,13 +28,10 @@ function extractAlias(shortLink: string): string {
 }
 
 function openTab(url: string) {
-    chrome
-        .tabs
-        .create({
-            url: url
-        });
+    chrome.tabs.create({
+        url: url
+    });
 }
-
 
 class ShortExt {
     constructor(private apiBaseUrl: string, private webUi: string) {
@@ -51,13 +48,10 @@ class ShortExt {
     };
 
     setupOmnibox = () => {
-        chrome
-            .omnibox
-            .onInputEntered
-            .addListener((alias: string) => {
-                let url = this.fullURL(alias);
-                openTab(url);
-            });
+        chrome.omnibox.onInputEntered.addListener((alias: string) => {
+            let url = this.fullURL(alias);
+            openTab(url);
+        });
     };
 
     redirect = (details: Details): BlockingResponse => {
@@ -79,21 +73,16 @@ class ShortExt {
     };
 
     interceptRequests() {
-        let types: ResourceType[] = [
-            'main_frame'
-        ];
+        let types: ResourceType[] = ['main_frame'];
 
         let filter = {
-            urls: [
-                '*://s/*',
-                '*://*.google.com/search?q=s%2F*'
-            ],
+            urls: ['*://s/*', '*://*.google.com/search?q=s%2F*'],
             types: types
         };
 
-        webRequest
-            .onBeforeRequest
-            .addListener(this.redirect, filter, ["blocking"]);
+        webRequest.onBeforeRequest.addListener(this.redirect, filter, [
+            'blocking'
+        ]);
     }
 
     launch() {
@@ -102,22 +91,18 @@ class ShortExt {
 
     redirectToHomePage = () => {
         //  browser_action need to be configured in manifest.json
-        chrome
-            .browserAction
-            .onClicked
-            .addListener((tab: chrome.tabs.Tab) => {
-                if (this.isOnHomepage(tab)) {
-                    return
-                }
+        chrome.browserAction.onClicked.addListener((tab: chrome.tabs.Tab) => {
+            if (this.isOnHomepage(tab)) {
+                return;
+            }
 
-                if (this.isEmptyTab(tab)) {
-                    this.goToHomepage(tab);
-                    return;
-                }
+            if (this.isEmptyTab(tab)) {
+                this.goToHomepage(tab);
+                return;
+            }
 
-                this.createShortLink(tab);
-            });
-
+            this.createShortLink(tab);
+        });
     };
 
     isOnHomepage(currentTab: chrome.tabs.Tab): boolean {
@@ -135,9 +120,9 @@ class ShortExt {
 
     createShortLink(currentTab: chrome.tabs.Tab) {
         let currentPageURL = currentTab.url;
-        chrome
-            .tabs
-            .create({url: `${this.webUi}/?long_link=${currentPageURL}`});
+        chrome.tabs.create({
+            url: `${this.webUi}/?long_link=${currentPageURL}`
+        });
     }
 
     isEmptyTab(tab: chrome.tabs.Tab): boolean {
@@ -145,13 +130,11 @@ class ShortExt {
     }
 
     listenToMessages() {
-        chrome
-            .runtime
-            .onMessageExternal
-            .addListener((request, sender, sendResponse) => {
+        chrome.runtime.onMessageExternal.addListener(
+            (request, sender, sendResponse) => {
                 if (request) {
                     if (request.message == MessageType.PING) {
-                        sendResponse({ping: true});
+                        sendResponse({ ping: true });
                     }
                 }
             }

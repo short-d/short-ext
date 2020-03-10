@@ -10,11 +10,15 @@
     "build": "yarn prep && yarn cp:assets && envsub --env-file .env build/manifest.json && tsc",
     "prep": "rm -rf build && mkdir build",
     "dev": "yarn build --watch",
-    "cp:assets": "cp -r icons manifest.json build/"
+    "cp:assets": "cp -r icons manifest.json build/",
+    "prettier:base": "prettier --parser typescript --single-quote --tab-width 4",
+    "prettier:check": "yarn prettier:base --list-different \"src/**/*.{ts,tsx}\"",
+    "prettier:write": "yarn prettier:base --write \"src/**/*.{ts,tsx}\""
   },
   "devDependencies": {
     "@types/chrome": "^0.0.87",
     "envsub": "^4.0.7",
+    "prettier": "1.19.1",
     "typescript": "^3.5.3"
   }
 }
