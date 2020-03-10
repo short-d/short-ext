@@ -20,7 +20,7 @@ Replace `APP_BASE_URL` with the URL of the web frontend.
 ### Build
 ```
 yarn
-yarn run build
+./scripts/build
 ```
 
 ### Install
