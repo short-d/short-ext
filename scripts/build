@@ -9,4 +9,5 @@ mv build/background.js build/short-ext/
 cp build/manifest.json build/short-ext/
 cp -r icons build/short-ext/
 
-zip -r build/short-ext.zip build/short-ext/* -x "*.DS_Store"
+cd build || exit
+zip -r short-ext.zip short-ext/* -x "*.DS_Store"
