@@ -1,7 +1,7 @@
 {
   "name": "Short",
   "short_name": "Short",
-  "version": "${CUR_GIT_TAG}",
+  "version": "${GIT_TAG}",
   "description": "Visit short links with less typing",
   "manifest_version": 2,
   "background": {

@@ -7,7 +7,7 @@
     "url": "https://short-d.com/r/extcode"
   },
   "scripts": {
-    "build": "yarn cp:assets && envsub --env CUR_GIT_TAG=`git describe --tags --abbrev=0` --env-file .env build/manifest.json && tsc",
+    "build": "yarn cp:assets && envsub --env-file .env build/manifest.json && tsc",
     "prep": "rm -rf build && mkdir build",
     "dev": "yarn build --watch",
     "cp:assets": "cp -r icons manifest.json build/",
