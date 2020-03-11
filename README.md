@@ -29,7 +29,7 @@ yarn
 ![](doc/screenshot/developer-mode.png)
 3. Click on `Load unpacked`.
 ![](doc/screenshot/load-unpacked.png)
-4. Select `build` directory.
+4. Select `build/short-ext` directory.
 5. **Short** should now up in extension list.
 ![](doc/screenshot/extension.png)
 
