@@ -1,13 +1,4 @@
 #!/usr/bin/env bash
 
-yarn prep
-yarn build
-
-mkdir -p build/short-ext
-
-mv build/background.js build/short-ext/
-mv build/manifest.json build/short-ext/
-mv build/icons build/short-ext/
-
-cd build || exit
-zip -r short-ext.zip short-ext/* -x "*.DS_Store"
+yarn
+yarn build:development

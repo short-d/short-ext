@@ -1,0 +1,17 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: build
+    image: node:12.7.0-alpine
+    commands:
+      - apk add --no-cache zip curl
+      - yarn
+      - GIT_TAG=$DRONE_TAG yarn build:production
+      - zip -r build/short-ext.zip build/* -x "*.DS_Store"
+      - curl google.com # replace it with the updating and publishing api
+
+trigger:
+  event:
+    - tag

@@ -7,7 +7,9 @@
     "url": "https://short-d.com/r/extcode"
   },
   "scripts": {
-    "build": "yarn cp:assets && envsub --env-file .env build/manifest.json && tsc",
+    "build": "yarn prep && yarn cp:assets && envsub --env-file .env.${APP_ENV} --all build/manifest.json && tsc",
+    "build:development": "APP_ENV=development yarn build",
+    "build:production": "APP_ENV=production yarn build",
     "prep": "rm -rf build && mkdir build",
     "dev": "yarn build --watch",
     "cp:assets": "cp -r icons manifest.json build/",

@@ -13,7 +13,7 @@ Install from [Chrome Web Store](https://short-d.com/r/ext)
 ## Getting Started
 ### Setup
 ```bash
-cp .env.dist .env
+cp .env.dist .env.development
 ```
 Replace `APP_BASE_URL` with the URL of the web frontend.
 
@@ -29,7 +29,7 @@ yarn
 ![](doc/screenshot/developer-mode.png)
 3. Click on `Load unpacked`.
 ![](doc/screenshot/load-unpacked.png)
-4. Select `build/short-ext` directory.
+4. Select `build` directory.
 5. **Short** should now up in extension list.
 ![](doc/screenshot/extension.png)
 
