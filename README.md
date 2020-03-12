@@ -18,13 +18,13 @@ cp .env.dist .env.development
 Replace `APP_BASE_URL` with the URL of the web frontend.
 
 ### Build
-#### Development mode:
+#### For Local Development
 ```
 yarn
 yarn:development
 ```
 
-#### Production mode:
+#### For Production Release
 ```
 yarn
 GIT_TAG=0.0.1 yarn build:production
