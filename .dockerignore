@@ -1,0 +1,24 @@
+# Documentation
+doc
+promo
+
+# Node.js dependencies
+node_modules
+
+# ignore files
+.gitignore
+.dockerignore
+
+# Environmental variables
+.env.development
+.env.dist
+
+# Build
+build
+
+# macOS metadata
+.DS_Store
+
+# git tracks
+.git/
+.github/
