@@ -7,9 +7,13 @@
     "url": "https://short-d.com/r/extcode"
   },
   "scripts": {
-    "build": "yarn prep && yarn cp:assets && envsub --env-file .env build/manifest.json && tsc",
+    "build": "yarn prep && yarn cp:assets && yarn compile",
+    "compile": "envsub --env-file .env.${APP_ENV} --all build/manifest.json && tsc",
+    "build:development": "APP_ENV=development yarn build",
+    "build:production": "APP_ENV=production yarn build && yarn zip:build",
+    "zip:build": "sh -ac 'zip -r build/short-ext.zip build/* -x \"*.DS_Store\"'",
     "prep": "rm -rf build && mkdir build",
-    "dev": "yarn build --watch",
+    "dev": "yarn build:development --watch",
     "cp:assets": "cp -r icons manifest.json build/",
     "prettier:base": "prettier --parser typescript --single-quote --tab-width 4",
     "prettier:check": "yarn prettier:base --list-different \"src/**/*.{ts,tsx}\"",

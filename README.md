@@ -13,14 +13,21 @@ Install from [Chrome Web Store](https://short-d.com/r/ext)
 ## Getting Started
 ### Setup
 ```bash
-cp .env.dist .env
+cp .env.dist .env.development
 ```
 Replace `APP_BASE_URL` with the URL of the web frontend.
 
 ### Build
+#### For Local Development
 ```
 yarn
-./scripts/build
+yarn:development
+```
+
+#### For Production Release
+```
+yarn
+GIT_TAG=0.0.1 yarn build:production
 ```
 
 ### Install
