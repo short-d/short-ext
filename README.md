@@ -25,10 +25,20 @@ yarn:development
 ```
 
 #### For Production Release
-```
-yarn
-GIT_TAG=0.0.1 yarn build:production
-```
+
+- **Method 1 (Automated):**
+
+    Once the release changes are merged into master branch, add a release tag with appropriate [semantic version](https://semver.org/).
+
+- **Method 2 (Manual uploading):**
+    
+    - Run the following commands after replacing `x.y.z` with appropriate [semantic version](https://semver.org/), which then builds and generates
+      `short-ext.zip` file in `build` directory.
+        ```
+        yarn
+        GIT_TAG=x.y.z yarn build:production
+        ```
+    - Upload the generated zip file to the Chrome Web Store.
 
 ### Install
 1. Navigate to `chrome://extensions/` in Google Chrome.
