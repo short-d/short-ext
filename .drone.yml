@@ -11,6 +11,28 @@ steps:
       - name: docker
         path: /var/run/docker.sock
 
+  - name: upload and publish extension
+    image: docker
+    environment:
+      EXTENSION_ID:
+        from_secret: EXTENSION_ID
+      CLIENT_ID:
+        from_secret: CLIENT_ID
+      CLIENT_SECRET:
+        from_secret: CLIENT_SECRET
+      REFRESH_TOKEN:
+        from_secret: REFRESH_TOKEN
+    commands:
+      - docker run
+        --env EXTENSION_ID=$EXTENSION_ID
+        --env CLIENT_ID=$CLIENT_ID
+        --env CLIENT_SECRET=$CLIENT_SECRET
+        --env REFRESH_TOKEN=$REFRESH_TOKEN
+        short-ext
+    volumes:
+      - name: docker
+        path: /var/run/docker.sock
+
 trigger:
   event:
     - tag
