@@ -26,7 +26,9 @@ yarn:development
 
 #### For Production Release
 Once the wanted changes are merged into master branch, [create a release tag](https://git-scm.com/book/en/v2/Git-Basics-Tagging) with the new [version](https://semver.org/).
-Eg. `0.0.7`
+
+Eg. 
+```0.0.7```
 
 ### Install
 1. Navigate to `chrome://extensions/` in Google Chrome.
