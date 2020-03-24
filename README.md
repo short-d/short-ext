@@ -21,7 +21,7 @@ Replace `APP_BASE_URL` with the URL of the web frontend.
 #### For Local Development
 ```
 yarn
-yarn:development
+yarn build:development
 ```
 
 #### For Production Release
